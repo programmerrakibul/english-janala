@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font Family */
+  --font-poppins: "Poppins", sans-serif;
+  --font-siliguri: "Hind Siliguri", sans-serif;
+  --font-tiro: "Tiro Bangla", serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Colors */
+  --color-accent: #00bcff;
+  --color-dark: #000000;
+  --color-dark-brown: #18181b;
+  --color-navy: #422ad5;
+  --color-vivid: #1a91ff1a;
+  --color-charcoal: #18181b80;
+  --color-alice-blue: #edf7ff;
+
+  /* Break Points */
+  --breakpoint-sm: 36rem;
+  --breakpoint-lg: 62rem;
+  --breakpoint-xl: 75rem;
+  --breakpoint-2xl: 87.5rem;
+}
+
+@plugin "daisyui" {
+  themes: light --default;
+}

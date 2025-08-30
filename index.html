@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Inter:opsz,wght@14..32,100..900&family=Poppins:wght@400;500;600;700&family=Tiro+Bangla&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body
+    class="bg-white text-base md:text-lg lg:text-xl font-poppins font-normal md:font-medium"
+  >
+    <!-- Header Area Starts Here -->
+    <header class="pb-12">
+      <!-- Navbar Area -->
+      <nav class="bg-[#F0F0F0] border border-[#C6BDBD] py-3 md:py-4">
+        <div class="container px-4 mx-auto flex justify-between items-center">
+          <!-- Logo Area -->
+          <a
+            href="./index.html"
+            class="flex justify-start items-center gap-1 text-lg md:text-xl"
+          >
+            <span class="font-semibold">English</span>
+            <img src="./assets/logo.png" alt="" class="size-9 md:size-10" />
+            <span class="font-normal font-tiro">জানালা</span>
+          </a>
+
+          <!-- Hamburger Button -->
+          <button
+            type="button"
+            aria-label="Hamburger button"
+            class="btn p-1.5 size-9 text-lg rounded-full border-none bg-transparent hover:bg-gray-200 md:hidden"
+          >
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+
+          <!-- FAQ and Logout Area -->
+          <div class="md:flex justify-end items-center gap-1.5 sm:gap-3 hidden">
+            <!-- FAQ Button -->
+            <button
+              type="button"
+              class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+            >
+              <img
+                src="./assets/fa-circle-question.png"
+                alt=""
+                class="size-4"
+              />
+              <span>FAQ</span>
+            </button>
+
+            <!-- Learn Button -->
+            <button
+              type="button"
+              class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+            >
+              <img src="./assets/fa-book-open.png" alt="" />
+              <span>Learn</span>
+            </button>
+
+            <!-- Logout Button -->
+            <button
+              type="button"
+              class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+            >
+              <img src="./assets/fa-arrow-right-from-bracket.png" alt="" />
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </body>
+</html>
