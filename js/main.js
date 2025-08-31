@@ -5,7 +5,7 @@ const getEl = (name) => {
 };
 
 const lessonNameURL = "https://openapi.programming-hero.com/api/levels/all";
-const lessonURL = "https://openapi.programming-hero.com/api/level/5";
+const lessonURL = "https://openapi.programming-hero.com/api/words/all";
 
 const btnContainer = getEl("#lesson-btn-container");
 const lessonCardContainer = getEl("#lesson-card-container");
@@ -85,7 +85,7 @@ function makeLessonCards(lessonArray) {
 
 function addColors(btn) {
   const btns = document.querySelectorAll(".lesson-btn");
-  
+
   btns.forEach((btn) => {
     btn.classList.replace("text-white", "text-navy");
     btn.classList.replace("bg-navy", "bg-transparent");
