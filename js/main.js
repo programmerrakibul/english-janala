@@ -10,12 +10,12 @@ const lessonURL = "https://openapi.programming-hero.com/api/level/5";
 const btnContainer = getEl("#lesson-btn-container");
 const lessonCardContainer = getEl("#lesson-card-container");
 
-function makeLessonButton(lessonArray) {
-  lessonArray.forEach((lesson, i) => {
+function makeLessonButton(lessonNameArray) {
+  lessonNameArray.forEach((lesson, i) => {
     const { lessonName } = lesson;
 
     const button = document.createElement("button");
-    button.className = `btn font-semibold text-sm bg-transparent hover:bg-navy hover:text-white border-navy text-navy lesson-${
+    button.className = `btn font-semibold text-sm bg-transparent hover:bg-navy hover:text-white border-navy text-navy lesson-btn lesson-btn-${
       i + 1
     }`;
     button.type = "button";
@@ -82,3 +82,21 @@ function makeLessonCards(lessonArray) {
 
   makeLessonCards(lessons);
 })(lessonURL);
+
+function addColors(btn) {
+  const btns = document.querySelectorAll(".lesson-btn");
+  
+  btns.forEach((btn) => {
+    btn.classList.replace("text-white", "text-navy");
+    btn.classList.replace("bg-navy", "bg-transparent");
+  });
+  btn.classList.replace("text-navy", "text-white");
+  btn.classList.replace("bg-transparent", "bg-navy");
+}
+
+btnContainer.addEventListener("click", (e) => {
+  const button = e.target.closest(".lesson-btn");
+  if (button) {
+    addColors(button);
+  }
+});
