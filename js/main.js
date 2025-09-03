@@ -4,45 +4,91 @@ const getEl = (name) => {
   return el;
 };
 
-const lessonNameURL = "https://openapi.programming-hero.com/api/levels/all";
-const lessonURL = "https://openapi.programming-hero.com/api/words/all";
+const levelContainer = getEl("#lesson-btn-container");
+const wordContainer = getEl("#lesson-card-container");
 
-const btnContainer = getEl("#lesson-btn-container");
-const lessonCardContainer = getEl("#lesson-card-container");
+const removeActive = () => {
+  const lessonBtns = document.querySelectorAll(".lesson-btn");
+  lessonBtns.forEach((btn) => {
+    btn.classList.add("bg-transparent", "text-navy");
+    btn.classList.remove("bg-navy", "text-white");
+  });
+};
 
-function makeLessonButton(lessonNameArray) {
-  lessonNameArray.forEach((lesson, i) => {
-    const { lessonName } = lesson;
+const loadLevels = () => {
+  const url = "https://openapi.programming-hero.com/api/levels/all";
+  const response = fetch(url).then((res) => res.json());
+  response.then((response) => {
+    const data = response.data;
+    displayLevels(data);
+  });
+};
 
-    const button = document.createElement("button");
-    button.className = `btn font-semibold text-sm bg-transparent hover:bg-navy hover:text-white border-navy text-navy lesson-btn lesson-btn-${
-      i + 1
-    }`;
-    button.type = "button";
-    button.innerHTML = `
-              <i class="fa-solid fa-book-open"></i>
-              <span>${lessonName}</span>
+const loadWords = (id) => {
+  const url = `https://openapi.programming-hero.com/api/level/${id}`;
+  const response = fetch(url).then((res) => res.json());
+  response.then((response) => {
+    const data = response.data;
+
+    removeActive();
+    const activeBtn = getEl(`#lesson-${id}`);
+    activeBtn.classList.remove("bg-transparent", "text-navy");
+    activeBtn.classList.add("bg-navy", "text-white");
+
+    displayWords(data);
+  });
+};
+
+const displayLevels = (data) => {
+  levelContainer.innerHTML = "";
+
+  data.forEach((level) => {
+    const levelDiv = document.createElement("div");
+
+    levelDiv.innerHTML = `
+            <button id="lesson-${level.level_no}" type="button" onclick="loadWords(${level.level_no})" class="btn font-semibold text-sm bg-transparent hover:bg-navy hover:text-white border-navy text-navy lesson-btn">
+                  <i class="fa-solid fa-book-open"></i>
+                  <span>Lesson - ${level.level_no}</span>
+            </button>
     `;
 
-    btnContainer.append(button);
+    levelContainer.append(levelDiv);
   });
-}
+};
 
-function makeLessonCards(lessonArray) {
-  lessonArray.forEach((lesson) => {
-    const { meaning, pronunciation, word } = lesson;
-    const div = document.createElement("div");
-    div.className = "bg-white p-7 rounded-lg shadow-sm";
-    div.innerHTML = `
+const displayWords = (words) => {
+  wordContainer.innerHTML = "";
+
+  if (words.length === 0) {
+    wordContainer.innerHTML = `
+           <div class="font-siliguri text-center col-span-full py-7">
+              <img src="./assets/alert-error.png" class="mx-auto mb-1.5"/>
+              <span class="block text-[#79716B] font-normal text-sm">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</span>
+              <p class="mt-1.5 font-medium text-xl sm:text-2xl md:text-4xl">
+                নেক্সট Lesson এ যান
+              </p>
+            </div>
+    `;
+  }
+
+  words.forEach((word) => {
+    const card = document.createElement("div");
+    card.innerHTML = `
+         <div class="bg-white p-7 rounded-lg shadow-sm h-full">
               <div class="space-y-4 md:space-y-6 text-center font-inter">
-                <h5 class="font-bold text-xl sm:text-2xl">${word}</h5>
+                <h5 class="font-bold text-xl sm:text-2xl">${
+                  word.word ? word.word : "Word Not Found"
+                }</h5>
                 <p class="font-medium sm:text-lg md:text-xl">
                   Meaning /Pronounciation
                 </p>
                 <span
                   class="font-siliguri font-semibold text-xl sm:text-2xl text-dark-brown opacity-80"
-                  >"${meaning} / ${pronunciation}"</span
-                >
+                  >"${
+                    word.meaning ? word.meaning : "অর্থ খুজে পাওয়া যাইনি"
+                  } / ${
+      word.pronunciation ? word.pronunciation : "উচ্চারণ খুজে পাওয়া যাইনি"
+    }"</span>
               </div>
               <div class="mt-6 flex justify-between items-center">
                 <button
@@ -60,43 +106,25 @@ function makeLessonCards(lessonArray) {
                   <i class="fa-solid fa-volume-high"></i>
                 </button>
               </div>
+        </div>
     `;
 
-    lessonCardContainer.append(div);
+    wordContainer.append(card);
   });
-}
+};
 
-(async function (url) {
-  const res = await fetch(url);
-  const data = await res.json();
-  const lessons = data.data;
+// {
+//     "id": 81,
+//     "level": 1,
+//     "word": "Ball",
+//     "meaning": "বল",
+//     "pronunciation": "বল"
+// }
 
-  makeLessonButton(lessons);
-  return lessons;
-})(lessonNameURL);
+// {
+//     "id": 101,
+//     "level_no": 1,
+//     "lessonName": "Basic Vocabulary"
+// }
 
-(async function (url) {
-  const res = await fetch(url);
-  const data = await res.json();
-  const lessons = data.data;
-
-  makeLessonCards(lessons);
-})(lessonURL);
-
-function addColors(btn) {
-  const btns = document.querySelectorAll(".lesson-btn");
-
-  btns.forEach((btn) => {
-    btn.classList.replace("text-white", "text-navy");
-    btn.classList.replace("bg-navy", "bg-transparent");
-  });
-  btn.classList.replace("text-navy", "text-white");
-  btn.classList.replace("bg-transparent", "bg-navy");
-}
-
-btnContainer.addEventListener("click", (e) => {
-  const button = e.target.closest(".lesson-btn");
-  if (button) {
-    addColors(button);
-  }
-});
+loadLevels();

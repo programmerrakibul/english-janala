@@ -133,24 +133,23 @@
           <!-- Lesson Buttons Container -->
           <div
             id="lesson-btn-container"
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 my-6"
+            class="flex justify-center items-center flex-wrap gap-4 my-6"
           ></div>
-
-          <!-- Default slide -->
-          <div class="font-siliguri text-center bg-gray py-8 px-4 rounded-md">
-            <span class="block text-[#79716B] font-normal text-sm"
-              >আপনি এখনো কোন Lesson Select করেন নি</span
-            >
-            <p class="mt-1.5 font-medium text-xl sm:text-2xl md:text-4xl">
-              একটি Lesson Select করুন।
-            </p>
-          </div>
 
           <!-- Lesson Cards Container -->
           <div
             id="lesson-card-container"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 bg-gray p-4 mt-5"
-          ></div>
+          >
+            <div class="font-siliguri text-center col-span-full py-7">
+              <span class="block text-[#79716B] font-normal text-sm"
+                >আপনি এখনো কোন Lesson Select করেন নি</span
+              >
+              <p class="mt-1.5 font-medium text-xl sm:text-2xl md:text-4xl">
+                একটি Lesson Select করুন।
+              </p>
+            </div>
+          </div>
         </div>
       </section>
       <section></section>
