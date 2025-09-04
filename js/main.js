@@ -39,6 +39,14 @@ const loadWords = (id) => {
   });
 };
 
+const loadDetails = (id) => {
+  const url = `https://openapi.programming-hero.com/api/word/${id}`;
+  const response = fetch(url).then((res) => res.json());
+  response.then((data) => {
+    displayDetails(data.data);
+  });
+};
+
 const displayLevels = (data) => {
   levelContainer.innerHTML = "";
 
@@ -91,7 +99,7 @@ const displayWords = (words) => {
     }"</span>
               </div>
               <div class="mt-6 flex justify-between items-center">
-                <button
+                <button onclick="loadDetails(${word.id})"
                   type="button"
                   aria-label="Info Button"
                   class="btn bg-vivid border-none rounded-lg text-[#374957] text-sm sm:text-lg md:text-xl p-0 size-9 md:size-12"
@@ -113,18 +121,67 @@ const displayWords = (words) => {
   });
 };
 
-// {
-//     "id": 81,
-//     "level": 1,
-//     "word": "Ball",
-//     "meaning": "বল",
-//     "pronunciation": "বল"
-// }
+const displayDetails = (words) => {
+  const modalDetails = getEl("#details-box");
+  const modalBox = getEl("#my_modal_5");
+
+  modalDetails.innerHTML = `
+          <h3 class="font-siliguri font-semibold text-2xl md:text-3xl">${
+            words.word ? words.word : "Word Not Found"
+          } (<i class="fa-solid fa-microphone-lines"></i> :${
+    words.pronunciation ? words.pronunciation : "উচ্চারণ খুজে পাওয়া যায়নি"
+  })</h3>
+            <div class="space-y-1">
+                 <h5 class="font-medium text-xl md:text-2xl">Meaning</h5>
+                 <span class="font-siliguri opacity-80 text-lg md:text-xl">${
+                   words.meaning ? words.meaning : "অর্থ খুজে পাওয়া যায়নি"
+                 }</span>
+            </div>
+            <div class="space-y-1">
+                <h5 class="font-normal text-xl md:text-2xl">Example</h5>
+                <p class="font-siliguri opacity-60 text-lg md:text-xl">${
+                  words.sentence ? words.sentence : "বাক্য খুজে পাওয়া যায়নি"
+                }</p>
+            </div>
+            <div class="space-y-1">
+                <h5 class="font-medium font-siliguri text-xl md:text-2xl">সমার্থক শব্দ গুলো</h5>
+                <div>
+                </div>
+            </div>
+  `;
+
+  modalBox.showModal();
+};
+
+// <h3 class="font-siliguri font-semibold text-2xl md:text-3xl">${words.word} (<i class="fa-solid fa-microphone-lines"></i> :${words.pronunciation})</h3>
+//             <div>
+//                  <h5 class="">Meaning</h5>
+//                  <span>${words.meaning}</span>
+//             </div>
+//             <div>
+//                 <h5 class="">Example</h5>
+//                 <p>${words.sentence}</p>
+//             </div>
+//             <div>
+//                 <span>সমার্থক শব্দ গুলো</span>
+//                 <div>
+//                 </div>
+//             </div>
 
 // {
-//     "id": 101,
-//     "level_no": 1,
-//     "lessonName": "Basic Vocabulary"
+//     "word": "Cautious",
+//     "meaning": "সতর্ক",
+//     "pronunciation": "কশাস",
+//     "level": 2,
+//     "sentence": "Be cautious while crossing the road.",
+//     "points": 2,
+//     "partsOfSpeech": "adjective",
+//     "synonyms": [
+//         "careful",
+//         "alert",
+//         "watchful"
+//     ],
+//     "id": 3
 // }
 
 loadLevels();
