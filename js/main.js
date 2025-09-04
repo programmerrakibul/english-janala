@@ -21,14 +21,14 @@ const removeActive = () => {
   });
 };
 
-const loadLevels = () => {
+(() => {
   const url = "https://openapi.programming-hero.com/api/levels/all";
   const response = fetch(url).then((res) => res.json());
   response.then((response) => {
     const data = response.data;
     displayLevels(data);
   });
-};
+})();
 
 const loadWords = (id) => {
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
@@ -175,4 +175,4 @@ const displayDetails = (words) => {
 //     "id": 3
 // }
 
-loadLevels();
+
