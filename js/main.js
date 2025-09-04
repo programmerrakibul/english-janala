@@ -7,6 +7,12 @@ const getEl = (name) => {
 const levelContainer = getEl("#lesson-btn-container");
 const wordContainer = getEl("#lesson-card-container");
 
+const pronounceWord = (word) => {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+};
+
 const removeActive = () => {
   const lessonBtns = document.querySelectorAll(".lesson-btn");
   lessonBtns.forEach((btn) => {
@@ -106,7 +112,7 @@ const displayWords = (words) => {
                 >
                   <i class="fa-solid fa-circle-info"></i>
                 </button>
-                <button
+                <button onclick="pronounceWord('${word.word}')"
                   type="button"
                   aria-label="Speaker Button"
                   class="btn bg-vivid border-none rounded-lg text-[#374957] text-sm sm:text-lg md:text-xl p-0 size-9 md:size-12"
@@ -152,21 +158,6 @@ const displayDetails = (words) => {
 
   modalBox.showModal();
 };
-
-// <h3 class="font-siliguri font-semibold text-2xl md:text-3xl">${words.word} (<i class="fa-solid fa-microphone-lines"></i> :${words.pronunciation})</h3>
-//             <div>
-//                  <h5 class="">Meaning</h5>
-//                  <span>${words.meaning}</span>
-//             </div>
-//             <div>
-//                 <h5 class="">Example</h5>
-//                 <p>${words.sentence}</p>
-//             </div>
-//             <div>
-//                 <span>সমার্থক শব্দ গুলো</span>
-//                 <div>
-//                 </div>
-//             </div>
 
 // {
 //     "word": "Cautious",
