@@ -6,6 +6,8 @@ const getEl = (name) => {
 
 const levelContainer = getEl("#lesson-btn-container");
 const wordContainer = getEl("#lesson-card-container");
+const btnSearch = getEl("#btn-search");
+const inputEl = getEl("#input-search");
 
 const pronounceWord = (word) => {
   const utterance = new SpeechSynthesisUtterance(word);
@@ -159,20 +161,26 @@ const displayDetails = (words) => {
   modalBox.showModal();
 };
 
-// {
-//     "word": "Cautious",
-//     "meaning": "সতর্ক",
-//     "pronunciation": "কশাস",
-//     "level": 2,
-//     "sentence": "Be cautious while crossing the road.",
-//     "points": 2,
-//     "partsOfSpeech": "adjective",
-//     "synonyms": [
-//         "careful",
-//         "alert",
-//         "watchful"
-//     ],
-//     "id": 3
-// }
+(() => {
+  btnSearch.disabled = true;
 
+  inputEl.addEventListener("input", () => {
+    btnSearch.disabled = inputEl.value.trim() === "";
+  });
+})();
 
+btnSearch.addEventListener("click", () => {
+  const input = inputEl.value.trim().toLowerCase();
+  removeActive();
+
+  const url = "https://openapi.programming-hero.com/api/words/all";
+  const response = fetch(url).then((res) => res.json());
+  response.then((data) => {
+    const allWords = data.data;
+    const searchWords = allWords.filter((word) =>
+      word.word.toLowerCase().includes(input)
+    );
+
+    displayWords(searchWords);
+  });
+});
