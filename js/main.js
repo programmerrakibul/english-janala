@@ -9,6 +9,17 @@ const wordContainer = getEl("#lesson-card-container");
 const btnSearch = getEl("#btn-search");
 const inputEl = getEl("#input-search");
 
+const spinner = (bool) => {
+  const container = getEl("#spinner");
+  if (bool) {
+    container.classList.remove("hidden");
+    container.classList.add("block");
+  } else {
+    container.classList.add("hidden");
+    container.classList.remove("block");
+  }
+};
+
 const pronounceWord = (word) => {
   const utterance = new SpeechSynthesisUtterance(word);
   utterance.lang = "en-EN"; // English
@@ -33,6 +44,7 @@ const removeActive = () => {
 })();
 
 const loadWords = (id) => {
+  spinner(true);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   const response = fetch(url).then((res) => res.json());
   response.then((response) => {
@@ -44,6 +56,7 @@ const loadWords = (id) => {
     activeBtn.classList.add("bg-navy", "text-white");
 
     displayWords(data);
+    spinner(false);
   });
 };
 
@@ -173,6 +186,8 @@ btnSearch.addEventListener("click", () => {
   const input = inputEl.value.trim().toLowerCase();
   removeActive();
 
+  spinner(true);
+
   const url = "https://openapi.programming-hero.com/api/words/all";
   const response = fetch(url).then((res) => res.json());
   response.then((data) => {
@@ -182,5 +197,6 @@ btnSearch.addEventListener("click", () => {
     );
 
     displayWords(searchWords);
+    spinner(false);
   });
 });
