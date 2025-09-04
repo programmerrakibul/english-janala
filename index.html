@@ -34,64 +34,129 @@
     <!-- Header Area Starts Here -->
     <header>
       <!-- Navbar Area -->
-      <nav
-        class="bg-[#F0F0F0] border-b border-[#C6BDBD] py-3 md:py-4 shadow-md fixed top-0 w-full z-50"
-      >
-        <div class="container px-4 mx-auto flex justify-between items-center">
-          <!-- Logo Area -->
-          <a
-            href="./index.html"
-            class="flex justify-start items-center gap-1 text-lg md:text-xl"
-          >
-            <span class="font-semibold">English</span>
-            <img src="./assets/logo.png" alt="" class="size-9 md:size-10" />
-            <span class="font-normal font-tiro">জানালা</span>
-          </a>
+      <nav class="bg-[#F0F0F0] border-b border-[#C6BDBD] shadow-md">
+        <div class="navbar container px-4 mx-auto justify-between">
+          <div class="navbar-start w-full md:w-auto justify-between">
+            <div class="dropdown order-2">
+              <div tabindex="0" role="button" class="btn btn-ghost md:hidden">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </div>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content right-0 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2.5"
+              >
+                <!-- Faq Area -->
+                <li>
+                  <a
+                    href="#faq"
+                    type="button"
+                    class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+                  >
+                    <img
+                      src="./assets/fa-circle-question.png"
+                      alt=""
+                      class="size-4"
+                    />
+                    <span>FAQ</span>
+                  </a>
+                </li>
 
-          <!-- Hamburger Button -->
-          <button
-            type="button"
-            aria-label="Hamburger button"
-            class="btn p-1.5 size-9 text-lg rounded-full border-none bg-transparent hover:bg-gray-200 md:hidden"
-          >
-            <i class="fa-solid fa-bars-staggered"></i>
-          </button>
+                <!-- Learn Button -->
+                <li>
+                  <a
+                    href="#learn"
+                    type="button"
+                    class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+                  >
+                    <img src="./assets/fa-book-open.png" alt="" />
+                    <span>Learn</span>
+                  </a>
+                </li>
 
-          <!-- FAQ and Logout Area -->
-          <div class="md:flex justify-end items-center gap-1.5 sm:gap-3 hidden">
-            <!-- FAQ Button -->
+                <!-- Logout Button -->
+                <li>
+                  <button
+                    id="logout-btn"
+                    type="button"
+                    class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+                  >
+                    <img
+                      src="./assets/fa-arrow-right-from-bracket.png"
+                      alt=""
+                    />
+                    <span>Logout</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Logo Area -->
             <a
-              href="#faq"
-              type="button"
-              class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+              href="./index.html"
+              class="btn btn-ghost hover:bg-transparent border-none justify-start items-center gap-1 text-lg md:text-xl order-1"
             >
-              <img
-                src="./assets/fa-circle-question.png"
-                alt=""
-                class="size-4"
-              />
-              <span>FAQ</span>
+              <span class="font-semibold">English</span>
+              <img src="./assets/logo.png" alt="" class="size-9 md:size-10" />
+              <span class="font-normal font-tiro">জানালা</span>
             </a>
+          </div>
 
-            <!-- Learn Button -->
-            <a
-              href="#learn"
-              type="button"
-              class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
-            >
-              <img src="./assets/fa-book-open.png" alt="" />
-              <span>Learn</span>
-            </a>
+          <!-- Navbar Right Side -->
+          <div class="navbar-end hidden md:flex">
+            <ul class="menu menu-horizontal px-1 space-x-3">
+              <!-- Faq Area -->
+              <li>
+                <a
+                  href="#faq"
+                  type="button"
+                  class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+                >
+                  <img
+                    src="./assets/fa-circle-question.png"
+                    alt=""
+                    class="size-4"
+                  />
+                  <span>FAQ</span>
+                </a>
+              </li>
 
-            <!-- Logout Button -->
-            <button
-              id="logout-btn"
-              type="button"
-              class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
-            >
-              <img src="./assets/fa-arrow-right-from-bracket.png" alt="" />
-              <span>Logout</span>
-            </button>
+              <!-- Learn Button -->
+              <li>
+                <a
+                  href="#learn"
+                  type="button"
+                  class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+                >
+                  <img src="./assets/fa-book-open.png" alt="" />
+                  <span>Learn</span>
+                </a>
+              </li>
+
+              <!-- Logout Button -->
+              <li>
+                <button
+                  id="logout-btn"
+                  type="button"
+                  class="btn text-sm text-navy border-navy bg-transparent hover:bg-gray-200 font-semibold"
+                >
+                  <img src="./assets/fa-arrow-right-from-bracket.png" alt="" />
+                  <span>Logout</span>
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
