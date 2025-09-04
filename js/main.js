@@ -123,7 +123,7 @@ const displayWords = (words) => {
 
 const displayDetails = (words) => {
   const modalDetails = getEl("#details-box");
-  const modalBox = getEl("#my_modal_5");
+  const modalBox = getEl("#word_modal");
 
   modalDetails.innerHTML = `
           <h3 class="font-siliguri font-semibold text-2xl md:text-3xl">${
