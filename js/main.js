@@ -142,6 +142,13 @@ const displayWords = (words) => {
   });
 };
 
+const showSynonyms = (synonyms) => {
+  const mappedSynonyms = synonyms.map((synonym) => {
+    return `<span class="btn m-1 opacity-75">${synonym}</span>`;
+  });
+  return mappedSynonyms.join("");
+};
+
 const displayDetails = (words) => {
   const modalDetails = getEl("#details-box");
   const modalBox = getEl("#word_modal");
@@ -166,7 +173,12 @@ const displayDetails = (words) => {
             </div>
             <div class="space-y-1">
                 <h5 class="font-medium font-siliguri text-xl md:text-2xl">সমার্থক শব্দ গুলো</h5>
-                <div>
+                <div class="text-sm md:text-base">
+                    ${
+                      showSynonyms(words.synonyms)
+                        ? showSynonyms(words.synonyms)
+                        : "সমার্থক শব্দ খুজে পাওয়া যায়নি"
+                    } 
                 </div>
             </div>
   `;
