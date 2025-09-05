@@ -87,6 +87,7 @@ const displayLevels = (data) => {
 
 const displayWords = (words) => {
   wordContainer.innerHTML = "";
+  spinner(true);
 
   if (words.length === 0) {
     wordContainer.innerHTML = `
@@ -98,6 +99,7 @@ const displayWords = (words) => {
               </p>
             </div>
     `;
+    spinner(false);
   }
 
   words.forEach((word) => {
